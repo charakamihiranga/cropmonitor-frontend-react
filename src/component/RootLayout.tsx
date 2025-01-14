@@ -1,17 +1,21 @@
-import React from 'react';
 import Navigation from "./Navigation.tsx";
-import {Outlet} from "react-router-dom";
+import Header from "./Header.tsx";
+import { Outlet } from "react-router-dom";
 
 function RootLayout() {
-    return (
-        <div className="flex">
-            {/* Sidebar */}
-            <Navigation/>
+    const userFullName = "John Doe";
+    const userRole = "Admin";
 
-            {/* Main Content Area */}
-            <main className="flex-1 p-4 md:ml-80">
-                <Outlet/>
-            </main>
+    return (
+        <div className="flex h-screen">
+            <Navigation />
+
+            <div className="flex-1 flex flex-col ml-0 sm:ml-80">
+                <Header userFullName={userFullName} userRole={userRole} />
+                <main className="flex-1 pt-20 p-4 overflow-y-auto">
+                    <Outlet />
+                </main>
+            </div>
         </div>
     );
 }
