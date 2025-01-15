@@ -2,9 +2,9 @@ import defaultProfile from '../assets/img/default-profile.png';
 
 function Header({ userFullName, userRole }) {
     return (
-        <header className="bg-white shadow-md p-4 flex justify-between items-center fixed top-0 left-0 sm:left-80 right-0 z-10 h-16">
-            <div className="flex space-x-4">
-                <div className="relative hidden md:block group">
+        <header className="bg-white p-4 flex justify-between items-center fixed top-0 left-0 sm:left-80 right-0 z-10 h-16">
+            <div className="flex space-x-4 mt-3">
+                <div className="relative hidden md:block group ml-4">
                     <input
                         id="search-bar"
                         type="text"

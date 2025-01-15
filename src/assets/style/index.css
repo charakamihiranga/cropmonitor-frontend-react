@@ -14,3 +14,20 @@
     font-family: 'Poppins', sans-serif;
   }
 }
+
+@layer utilities {
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #6B7280;
+    border-radius: 8px;
+    border: 2px solid #F3F4F6;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #F3F4F6;
+    border-radius: 8px;
+  }
+}
