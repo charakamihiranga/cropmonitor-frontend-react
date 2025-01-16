@@ -5,19 +5,49 @@ import { Staff } from "../model/Staff";
 import AddStaff from "./AddStaff";
 import { motion } from "framer-motion";
 import {addStaffMember} from "../slice/StaffSlice.ts";
+import DataTable from "../component/DataTable.tsx";
+import ViewStaff from "./ViewStaff.tsx";
 
 function StaffPage() {
     const staffMembers: Staff[] = useSelector((state: RootState) => state.staff);
-    const [isModalOpen, setIsModalOpen] = useState(false);
     const dispatch = useDispatch();
+    const staffHeaders = ['Name', 'Designation', 'Email', 'Contact No', 'Gender', 'Actions'];
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isViewModalOpen, setIsViewModalOpen] = useState(false);
+    const [selectedStaff, setSelectedStaff] = useState<Staff | null>(null)
 
+
+    const renderStaffRow = (staff: Staff) => (
+        <>
+            <div className="p-2 truncate">{staff.firstName} {staff.lastName}</div>
+            <div className="p-2 truncate">{staff.designation}</div>
+            <div className="p-2 hidden sm:block truncate">{staff.email}</div>
+            <div className="p-2 truncate">{staff.contactNo}</div>
+            <div className="p-2 truncate">{staff.gender}</div>
+        </>
+    );
 
     // Function to handle adding new staff
-    const handleAddStaff = (newStaff: Staff) => {
+    function handleAddStaff(newStaff: Staff) {
         dispatch( addStaffMember(newStaff) );
         setIsModalOpen(false);
         console.log(staffMembers);
-    };
+    }
+
+    function handleViewStaff(staff: Staff) {
+        console.log(staff)
+        setSelectedStaff(staff);
+        setIsViewModalOpen(true);
+    }
+
+
+    function handleUpdateStaff(staff: Staff){
+        alert(`Updating ${staff.firstName} ${staff.lastName}`);
+    }
+
+    function handleDeleteStaff(staff: Staff){
+        alert(`Deleting ${staff.firstName} ${staff.lastName}`);
+    }
 
     return (
         <motion.div
@@ -52,6 +82,17 @@ function StaffPage() {
 
                 {/* Modal for Adding Staff */}
                 <AddStaff isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} onSave={handleAddStaff}/>
+                {/* Modal for Viewing Staff */}
+                { selectedStaff && (
+                    <ViewStaff
+                        isOpenModal={isViewModalOpen}
+                        setIsOpenModal={setIsViewModalOpen}
+                        staff={selectedStaff}
+                    />
+                )}
+                <DataTable data={staffMembers} headers={staffHeaders} renderRow={renderStaffRow}
+                           handleView={handleViewStaff} handleUpdate={handleUpdateStaff} handleDelete={handleDeleteStaff}
+                ></DataTable>
             </div>
         </motion.div>
     );
