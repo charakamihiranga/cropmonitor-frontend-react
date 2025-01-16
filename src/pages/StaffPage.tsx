@@ -4,9 +4,11 @@ import { RootState } from "../store/Store";
 import { Staff } from "../model/Staff";
 import AddStaff from "./AddStaff";
 import { motion } from "framer-motion";
-import {addStaffMember} from "../slice/StaffSlice.ts";
+import {addStaffMember, removeStaffMember} from "../slice/StaffSlice.ts";
 import DataTable from "../component/DataTable.tsx";
 import ViewStaff from "./ViewStaff.tsx";
+import toast from "react-hot-toast";
+import DeleteModal from "../component/DeleteModal.tsx";
 
 function StaffPage() {
     const staffMembers: Staff[] = useSelector((state: RootState) => state.staff);
@@ -29,9 +31,9 @@ function StaffPage() {
 
     // Function to handle adding new staff
     function handleAddStaff(newStaff: Staff) {
-        dispatch( addStaffMember(newStaff) );
+        dispatch( addStaffMember(newStaff));
         setIsModalOpen(false);
-        console.log(staffMembers);
+        toast.success('Staff saved successfully');
     }
 
     function handleViewStaff(staff: Staff) {
@@ -46,7 +48,25 @@ function StaffPage() {
     }
 
     function handleDeleteStaff(staff: Staff){
-        alert(`Deleting ${staff.firstName} ${staff.lastName}`);
+        toast.custom((t) => (
+            <DeleteModal
+                visible={t.visible}
+                onDelete={() => {
+                    toast.dismiss(t.id);
+                    dispatch(removeStaffMember(staff.staffId));
+                    toast.success(
+                        <div className="flex items-center space-x-2 text-red-600">
+                            <i className="fa fa-trash"></i> {/* Red delete icon */}
+                            <span>Staff deleted successfully!</span>
+                        </div>,
+                        { icon: false }
+                    );
+                }}
+                onCancel={() => {
+                    toast.dismiss(t.id);
+                }}
+            />
+        ));
     }
 
     return (
