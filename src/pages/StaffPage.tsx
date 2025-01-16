@@ -4,11 +4,12 @@ import { RootState } from "../store/Store";
 import { Staff } from "../model/Staff";
 import AddStaff from "./AddStaff";
 import { motion } from "framer-motion";
-import {addStaffMember, removeStaffMember} from "../slice/StaffSlice.ts";
+import {addStaffMember, removeStaffMember, updateStaffMember} from "../slice/StaffSlice.ts";
 import DataTable from "../component/DataTable.tsx";
 import ViewStaff from "./ViewStaff.tsx";
 import toast from "react-hot-toast";
 import DeleteModal from "../component/DeleteModal.tsx";
+import UpdateStaff from "./UpdateStaff.tsx";
 
 function StaffPage() {
     const staffMembers: Staff[] = useSelector((state: RootState) => state.staff);
@@ -16,6 +17,7 @@ function StaffPage() {
     const staffHeaders = ['Name', 'Designation', 'Email', 'Contact No', 'Gender', 'Actions'];
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isViewModalOpen, setIsViewModalOpen] = useState(false);
+    const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
     const [selectedStaff, setSelectedStaff] = useState<Staff | null>(null)
 
 
@@ -37,14 +39,27 @@ function StaffPage() {
     }
 
     function handleViewStaff(staff: Staff) {
-        console.log(staff)
         setSelectedStaff(staff);
         setIsViewModalOpen(true);
     }
 
 
+    function openUpdateModal(staff: Staff){
+        setSelectedStaff(staff);
+        setIsUpdateModalOpen(true);
+    }
+
     function handleUpdateStaff(staff: Staff){
-        alert(`Updating ${staff.firstName} ${staff.lastName}`);
+        console.log(staff);
+        dispatch(updateStaffMember(staff));
+        setIsUpdateModalOpen(false);
+        toast.success(
+            <div className="flex items-center space-x-2 ">
+                <i className="fa fa-refresh text-orange-600"></i>
+                <span>Staff updated successfully!</span>
+            </div>,
+            { icon: false }
+        );
     }
 
     function handleDeleteStaff(staff: Staff){
@@ -55,8 +70,8 @@ function StaffPage() {
                     toast.dismiss(t.id);
                     dispatch(removeStaffMember(staff.staffId));
                     toast.success(
-                        <div className="flex items-center space-x-2 text-red-600">
-                            <i className="fa fa-trash"></i> {/* Red delete icon */}
+                        <div className="flex items-center space-x-2 ">
+                            <i className="fa fa-trash text-red-600"></i>
                             <span>Staff deleted successfully!</span>
                         </div>,
                         { icon: false }
@@ -110,8 +125,17 @@ function StaffPage() {
                         staff={selectedStaff}
                     />
                 )}
+                {/* Modal for Updating Staff */}
+                { selectedStaff && (
+                    <UpdateStaff
+                        isModalOpen={isUpdateModalOpen}
+                        setIsModalOpen={setIsUpdateModalOpen}
+                        staff={selectedStaff}
+                        onUpdate={handleUpdateStaff}
+                    />
+                )}
                 <DataTable data={staffMembers} headers={staffHeaders} renderRow={renderStaffRow}
-                           handleView={handleViewStaff} handleUpdate={handleUpdateStaff} handleDelete={handleDeleteStaff}
+                           handleView={handleViewStaff} handleUpdate={openUpdateModal} handleDelete={handleDeleteStaff}
                 ></DataTable>
             </div>
         </motion.div>

@@ -37,7 +37,7 @@ function ViewStaff({ isOpenModal, setIsOpenModal, staff }: Readonly<ViewStaffPro
                 >
                     <h1 className="text-center text-xl font-semibold mb-5">View Staff Member</h1>
 
-                    <div className="overflow-y-auto h-[60vh] custom-scrollbar p-2">
+                    <div className="overflow-y-auto h-[60vh] custom-scrollbar p-2 font-medium">
                         {/* First Name and Last Name */}
                         <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 mt-10">
                             <div className="sm:col-span-3">
