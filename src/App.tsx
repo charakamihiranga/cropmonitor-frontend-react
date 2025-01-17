@@ -3,6 +3,7 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import RootLayout from "./component/RootLayout.tsx";
 import StaffPage from "./pages/StaffPage.tsx";
 import {Toaster} from "react-hot-toast";
+import VehiclePage from "./pages/VehiclePage.tsx";
 
 
 
@@ -14,6 +15,7 @@ function App() {
           children: [
               {path: '', element: <Dashboard />},
               {path: '/staff', element: <StaffPage />},
+              {path:'/vehicle', element: <VehiclePage/>},
           ]
       }
   ])
