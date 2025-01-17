@@ -2,7 +2,13 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import {Staff} from "../model/Staff.ts";
 
-function AddStaff({ isModalOpen, setIsModalOpen, onSave }: { isModalOpen: boolean, setIsModalOpen: (open: boolean) => void, onSave: (newStaff: Staff) => void  }) {
+interface AddStaffProps {
+    isModalOpen: boolean;
+    setIsModalOpen: (open: boolean) => void;
+    onSave: (newStaff: Staff) => void;
+}
+
+function AddStaff({ isModalOpen, setIsModalOpen, onSave }: Readonly<AddStaffProps>){
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",

@@ -46,8 +46,8 @@ function ViewStaff({ isOpenModal, setIsOpenModal, staff }: Readonly<ViewStaffPro
                                     <input
                                         type="text"
                                         value={staff.firstName}
-                                        disabled
-                                        className="block w-full rounded-md bg-gray-200 px-3 py-2 text-base text-gray-900 sm:text-sm outline outline-2 -outline-offset-1 outline-gray-300"
+                                        readOnly
+                                        className="block w-full rounded-md bg-white px-3 py-2 text-base text-gray-900 sm:text-sm outline outline-2 -outline-offset-1 outline-gray-300"
                                     />
                                 </div>
                             </div>
@@ -57,8 +57,8 @@ function ViewStaff({ isOpenModal, setIsOpenModal, staff }: Readonly<ViewStaffPro
                                     <input
                                         type="text"
                                         value={staff.lastName}
-                                        disabled
-                                        className="block w-full rounded-md bg-gray-200 px-3 py-2 text-base text-gray-900 sm:text-sm outline outline-2 -outline-offset-1 outline-gray-300"
+                                        readOnly
+                                        className="block w-full rounded-md bg-white px-3 py-2 text-base text-gray-900 sm:text-sm outline outline-2 -outline-offset-1 outline-gray-300"
                                     />
                                 </div>
                             </div>
@@ -72,8 +72,8 @@ function ViewStaff({ isOpenModal, setIsOpenModal, staff }: Readonly<ViewStaffPro
                                     <input
                                         type="text"
                                         value={staff.designation}
-                                        disabled
-                                        className="block w-full rounded-md bg-gray-200 px-3 py-2 text-base text-gray-900 sm:text-sm outline outline-2 -outline-offset-1 outline-gray-300"
+                                        readOnly
+                                        className="block w-full rounded-md bg-white px-3 py-2 text-base text-gray-900 sm:text-sm outline outline-2 -outline-offset-1 outline-gray-300"
                                     />
                                 </div>
                             </div>
@@ -83,8 +83,8 @@ function ViewStaff({ isOpenModal, setIsOpenModal, staff }: Readonly<ViewStaffPro
                                     <input
                                         type="text"
                                         value={staff.gender}
-                                        disabled
-                                        className="block w-full rounded-md bg-gray-200 px-3 py-2 text-base text-gray-900 sm:text-sm outline outline-2 -outline-offset-1 outline-gray-300"
+                                        readOnly
+                                        className="block w-full rounded-md bg-white px-3 py-2 text-base text-gray-900 sm:text-sm outline outline-2 -outline-offset-1 outline-gray-300"
                                     />
                                 </div>
                             </div>
@@ -98,8 +98,8 @@ function ViewStaff({ isOpenModal, setIsOpenModal, staff }: Readonly<ViewStaffPro
                                     <input
                                         type="date"
                                         value={formatDate(staff.dob)}
-                                        disabled
-                                        className="block w-full rounded-md bg-gray-200 px-3 py-2 text-base text-gray-900 sm:text-sm outline outline-2 -outline-offset-1 outline-gray-300"
+                                        readOnly
+                                        className="block w-full rounded-md bg-white px-3 py-2 text-base text-gray-900 sm:text-sm outline outline-2 -outline-offset-1 outline-gray-300"
                                     />
                                 </div>
                             </div>
@@ -109,8 +109,8 @@ function ViewStaff({ isOpenModal, setIsOpenModal, staff }: Readonly<ViewStaffPro
                                     <input
                                         type="tel"
                                         value={staff.contactNo}
-                                        disabled
-                                        className="block w-full rounded-md bg-gray-200 px-3 py-2 text-base text-gray-900 sm:text-sm outline outline-2 -outline-offset-1 outline-gray-300"
+                                        readOnly
+                                        className="block w-full rounded-md bg-white px-3 py-2 text-base text-gray-900 sm:text-sm outline outline-2 -outline-offset-1 outline-gray-300"
                                     />
                                 </div>
                             </div>
@@ -124,8 +124,8 @@ function ViewStaff({ isOpenModal, setIsOpenModal, staff }: Readonly<ViewStaffPro
                                     <input
                                         type="email"
                                         value={staff.email}
-                                        disabled
-                                        className="block w-full rounded-md bg-gray-200 px-3 py-2 text-base text-gray-900 sm:text-sm outline outline-2 -outline-offset-1 outline-gray-300"
+                                        readOnly
+                                        className="block w-full rounded-md bg-white px-3 py-2 text-base text-gray-900 sm:text-sm outline outline-2 -outline-offset-1 outline-gray-300"
                                     />
                                 </div>
                             </div>
@@ -135,8 +135,8 @@ function ViewStaff({ isOpenModal, setIsOpenModal, staff }: Readonly<ViewStaffPro
                                     <input
                                         type="text"
                                         value={staff.role}
-                                        disabled
-                                        className="block w-full rounded-md bg-gray-200 px-3 py-2 text-base text-gray-900 sm:text-sm outline outline-2 -outline-offset-1 outline-gray-300"
+                                        readOnly
+                                        className="block w-full rounded-md bg-white px-3 py-2 text-base text-gray-900 sm:text-sm outline outline-2 -outline-offset-1 outline-gray-300"
                                     />
                                 </div>
                             </div>
@@ -150,8 +150,8 @@ function ViewStaff({ isOpenModal, setIsOpenModal, staff }: Readonly<ViewStaffPro
                                     <input
                                         type="text"
                                         value={staff.addressLine01}
-                                        disabled
-                                        className="block w-full rounded-md bg-gray-200 px-3 py-2 text-base text-gray-900 sm:text-sm outline outline-2 -outline-offset-1 outline-gray-300"
+                                        readOnly
+                                        className="block w-full rounded-md bg-white px-3 py-2 text-base text-gray-900 sm:text-sm outline outline-2 -outline-offset-1 outline-gray-300"
                                     />
                                 </div>
                             </div>
@@ -161,8 +161,8 @@ function ViewStaff({ isOpenModal, setIsOpenModal, staff }: Readonly<ViewStaffPro
                                     <input
                                         type="text"
                                         value={staff.addressLine02|| ""}
-                                        disabled
-                                        className="block w-full rounded-md bg-gray-200 px-3 py-2 text-base text-gray-900 sm:text-sm outline outline-2 -outline-offset-1 outline-gray-300"
+                                        readOnly
+                                        className="block w-full rounded-md bg-white px-3 py-2 text-base text-gray-900 sm:text-sm outline outline-2 -outline-offset-1 outline-gray-300"
                                     />
                                 </div>
                             </div>
@@ -176,8 +176,8 @@ function ViewStaff({ isOpenModal, setIsOpenModal, staff }: Readonly<ViewStaffPro
                                     <input
                                         type="text"
                                         value={staff.addressLine03}
-                                        disabled
-                                        className="block w-full rounded-md bg-gray-200 px-3 py-2 text-base text-gray-900 sm:text-sm outline outline-2 -outline-offset-1 outline-gray-300"
+                                        readOnly
+                                        className="block w-full rounded-md bg-white px-3 py-2 text-base text-gray-900 sm:text-sm outline outline-2 -outline-offset-1 outline-gray-300"
                                     />
                                 </div>
                             </div>
@@ -187,8 +187,8 @@ function ViewStaff({ isOpenModal, setIsOpenModal, staff }: Readonly<ViewStaffPro
                                     <input
                                         type="text"
                                         value={staff.addressLine04}
-                                        disabled
-                                        className="block w-full rounded-md bg-gray-200 px-3 py-2 text-base text-gray-900 sm:text-sm outline outline-2 -outline-offset-1 outline-gray-300"
+                                        readOnly
+                                        className="block w-full rounded-md bg-white px-3 py-2 text-base text-gray-900 sm:text-sm outline outline-2 -outline-offset-1 outline-gray-300"
                                     />
                                 </div>
                             </div>
@@ -198,8 +198,8 @@ function ViewStaff({ isOpenModal, setIsOpenModal, staff }: Readonly<ViewStaffPro
                                     <input
                                         type="text"
                                         value={staff.addressLine05}
-                                        disabled
-                                        className="block w-full rounded-md bg-gray-200 px-3 py-2 text-base text-gray-900 sm:text-sm outline outline-2 -outline-offset-1 outline-gray-300"
+                                        readOnly
+                                        className="block w-full rounded-md bg-white px-3 py-2 text-base text-gray-900 sm:text-sm outline outline-2 -outline-offset-1 outline-gray-300"
                                     />
                                 </div>
                             </div>
@@ -213,8 +213,8 @@ function ViewStaff({ isOpenModal, setIsOpenModal, staff }: Readonly<ViewStaffPro
                                     <input
                                         type="text"
                                         value={staff.postalCode}
-                                        disabled
-                                        className="block w-full rounded-md bg-gray-200 px-3 py-2 text-base text-gray-900 sm:text-sm outline outline-2 -outline-offset-1 outline-gray-300"
+                                        readOnly
+                                        className="block w-full rounded-md bg-white px-3 py-2 text-base text-gray-900 sm:text-sm outline outline-2 -outline-offset-1 outline-gray-300"
                                     />
                                 </div>
                             </div>
@@ -224,8 +224,8 @@ function ViewStaff({ isOpenModal, setIsOpenModal, staff }: Readonly<ViewStaffPro
                                     <input
                                         type="date"
                                         value={formatDate(staff.joinedDate)}
-                                        disabled
-                                        className="block w-full rounded-md bg-gray-200 px-3 py-2 text-base text-gray-900 sm:text-sm outline outline-2 -outline-offset-1 outline-gray-300"
+                                        readOnly
+                                        className="block w-full rounded-md bg-white px-3 py-2 text-base text-gray-900 sm:text-sm outline outline-2 -outline-offset-1 outline-gray-300"
                                     />
                                 </div>
                             </div>

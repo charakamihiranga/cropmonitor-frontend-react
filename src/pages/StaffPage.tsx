@@ -50,7 +50,6 @@ function StaffPage() {
     }
 
     function handleUpdateStaff(staff: Staff){
-        console.log(staff);
         dispatch(updateStaffMember(staff));
         setIsUpdateModalOpen(false);
         toast.success(
