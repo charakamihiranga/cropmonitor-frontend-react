@@ -6,8 +6,10 @@ import DataTable from "../component/DataTable.tsx";
 import {useState} from "react";
 import toast from "react-hot-toast";
 import AddVehicle from "./AddVehicle.tsx";
-import {addVehicle} from "../slice/VehicleSlice.ts";
+import {addVehicle, removeVehicle, updateVehicle} from "../slice/VehicleSlice.ts";
 import ViewVehicle from "./ViewVehicle.tsx";
+import UpdateVehicle from "./UpdateVehicle.tsx";
+import DeleteModal from "../component/DeleteModal.tsx";
 
 function VehiclePage() {
     const vehicles : Vehicle[] =  useSelector((state: RootState) => state.vehicle);
@@ -15,6 +17,7 @@ function VehiclePage() {
     const vehicleHeaders = ['Category', 'Licence Plate Number', 'Fuel Type', 'Status', 'Allocated Employee', 'Actions'];
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [isViewModalOpen, setIsViewModalOpen] = useState(false);
+    const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
     const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | null>(null);
 
     const renderVehicleRow = (vehicle: Vehicle) => (
@@ -37,10 +40,40 @@ function VehiclePage() {
         setIsViewModalOpen(true);
     }
     function openUpdateModal(vehicle: Vehicle){
-        alert('Update Modal Opened')
+        setSelectedVehicle(vehicle);
+        setIsUpdateModalOpen(true);
+    }
+    function handleUpdateVehicle(vehicle: Vehicle) {
+        dispatch(updateVehicle(vehicle));
+        setIsUpdateModalOpen(false);
+        toast.success(
+            <div className="flex items-center space-x-2 ">
+                <i className="fa fa-refresh text-orange-600"></i>
+                <span>Vehicle updated successfully!</span>
+            </div>,
+            { icon: false }
+        );
     }
     function handleDelete(vehicle: Vehicle){
-        alert('Delete Vehicle')
+        toast.custom((t) => (
+            <DeleteModal
+                visible={t.visible}
+                onDelete={() => {
+                    toast.dismiss(t.id);
+                    dispatch(removeVehicle(vehicle.code));
+                    toast.success(
+                        <div className="flex items-center space-x-2 ">
+                            <i className="fa fa-trash text-red-600"></i>
+                            <span>Vehicle deleted successfully!</span>
+                        </div>,
+                        { icon: false }
+                    );
+                }}
+                onCancel={() => {
+                    toast.dismiss(t.id);
+                }}
+            />
+        ));
     }
     return (
         <motion.div
@@ -79,7 +112,18 @@ function VehiclePage() {
                 {/*Modal for view vehicle*/}
                 {selectedVehicle && (
                     <ViewVehicle
-                        isOpenModal={isViewModalOpen} setIsOpenModal={setIsViewModalOpen} vehicle={selectedVehicle}
+                        isOpenModal={isViewModalOpen}
+                        setIsOpenModal={setIsViewModalOpen}
+                        vehicle={selectedVehicle}
+                    />
+                )}
+                {/*Modal for update vehicle*/}
+                { selectedVehicle && (
+                    <UpdateVehicle
+                        isModalOpen={isUpdateModalOpen}
+                        setIsModalOpen={setIsUpdateModalOpen}
+                        vehicle={selectedVehicle}
+                        onUpdate={handleUpdateVehicle}
                     />
                 )}
                 <DataTable

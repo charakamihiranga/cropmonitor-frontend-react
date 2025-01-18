@@ -1,7 +1,9 @@
 import {Staff} from "../model/Staff.ts";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import staffData from "../dummyData/StaffDummyData.ts";
 
-const initialState: Staff[] = [];
+
+const initialState: Staff[] = staffData;
 
 const staffSlice =  createSlice({
     name: 'staff',
