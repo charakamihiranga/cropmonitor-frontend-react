@@ -4,6 +4,7 @@ import RootLayout from "./component/RootLayout.tsx";
 import StaffPage from "./pages/StaffPage.tsx";
 import {Toaster} from "react-hot-toast";
 import VehiclePage from "./pages/VehiclePage.tsx";
+import FieldPage from "./pages/FieldPage.tsx";
 
 
 
@@ -16,6 +17,7 @@ function App() {
               {path: '', element: <Dashboard />},
               {path: '/staff', element: <StaffPage />},
               {path:'/vehicle', element: <VehiclePage/>},
+              {path:'/field', element: <FieldPage/>},
           ]
       }
   ])
