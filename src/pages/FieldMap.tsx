@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react';
 import { Field } from "../model/Field";
-import { MapContainer, TileLayer, Marker, Tooltip, useMap } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 
 interface FieldProps {
     fields: Field[];
+    onClickOnField: (field: Field) => void;
 }
 
-function FieldMap({ fields }: Readonly<FieldProps>) {
-    const [viewport, setViewport] = useState({
+function FieldMap({ fields, onClickOnField }: Readonly<FieldProps>) {
+    const [viewport] = useState({
         latitude: 6.9271,
         longitude: 79.8612,
         zoom: 15,
@@ -39,9 +40,16 @@ function FieldMap({ fields }: Readonly<FieldProps>) {
         return null; // This component does not render anything directly
     };
 
-    function handleMarkClick(field: Field) {
-        console.log(field);
-    }
+    const createCustomLabel = (fieldName: string) => {
+        return new L.DivIcon({
+            className: 'field-name-label',
+            html: `<div class="bg-white text-gray-800 px-4 py-2 rounded-full text-xs font-semibold text-center shadow-lg max-w-xs truncate">
+                ${fieldName}</div>`,
+            iconSize: [150, 40],
+            iconAnchor: [75, -20],
+        });
+    };
+
 
     return (
         <div className="rounded-lg overflow-hidden">
@@ -57,15 +65,11 @@ function FieldMap({ fields }: Readonly<FieldProps>) {
                 />
                 <AdjustMapBounds />
                 {fields.length === 0 ? (
-                    <Marker position={[6.9271, 79.8612]} icon={customIcon}>
-                        <Tooltip>
-                            <div className="p-3 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white rounded-xl shadow-lg">
-                                <h3 className="font-semibold text-sm mb-1">No Fields</h3>
-                                <p className="text-xs text-gray-300 mb-1">
-                                    <i className="fa-solid fa-map-marker-alt mr-1"></i> Colombo, Sri Lanka
-                                </p>
-                            </div>
-                        </Tooltip>
+                    <Marker
+                        position={[6.9271, 79.8612]}
+                        icon={customIcon}
+                    >
+                    <Marker position={[6.9271, 79.8612]} icon={createCustomLabel("Colombo, Sri Lanka")}/>
                     </Marker>
                 ) : (
                     fields.map((field) => (
@@ -74,17 +78,13 @@ function FieldMap({ fields }: Readonly<FieldProps>) {
                             position={[field.fieldLocation.latitude, field.fieldLocation.longitude]}
                             icon={customIcon} // Apply custom icon to the marker
                             eventHandlers={{
-                                click: () => handleMarkClick(field),
+                                click: () => onClickOnField(field),
                             }}
                         >
-                            <Tooltip className="custom-tooltip" sticky>
-                                <div className="p-3 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white rounded-xl shadow-lg">
-                                    <h3 className="font-semibold text-sm mb-1">{field.fieldName}</h3>
-                                    <p className="text-xs text-gray-300 mb-1">
-                                        <i className="fa-solid fa-chart-area mr-1"></i> {field.fieldSize} hectares
-                                    </p>
-                                </div>
-                            </Tooltip>
+                            <Marker
+                                position={[field.fieldLocation.latitude, field.fieldLocation.longitude]}
+                                icon={createCustomLabel(field.fieldName)} // Field name label
+                            />
                         </Marker>
                     ))
                 )}
