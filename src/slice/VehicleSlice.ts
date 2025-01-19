@@ -8,7 +8,6 @@ const vehicleSlice = createSlice({
     initialState,
     reducers: {
         addVehicle: (state, action: PayloadAction<Vehicle>) => {
-            console.log(action.payload);
             state.push(action.payload);
         },
         updateVehicle: (state, action: PayloadAction<Vehicle>) => {
