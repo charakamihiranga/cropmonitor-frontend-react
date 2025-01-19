@@ -1,9 +1,9 @@
-import {Vehicle} from "../model/Vehicle.ts";
+import {Vehicle} from "../model/Vehicle";
 import {useState} from "react";
 import * as React from "react";
-import {Staff} from "../model/Staff.ts";
+import {Staff} from "../model/Staff";
 import { useSelector} from "react-redux";
-import {RootState} from "../store/Store.ts";
+import {RootState} from "../store/Store";
 import {motion} from "framer-motion";
 
 interface AddVehicleProps {
@@ -32,7 +32,6 @@ function AddVehicle({isModalOpen, setIsModalOpen, onSave}: Readonly<AddVehiclePr
     }
 
     function handleSave(){
-        console.log(formData.status)
         const allocatedStaff = getStaff(formData.allocatedStaffId);
         if (allocatedStaff) {
             const newVehicle = new Vehicle(
@@ -87,7 +86,7 @@ function AddVehicle({isModalOpen, setIsModalOpen, onSave}: Readonly<AddVehiclePr
                     }}
                 >
                     <h1 className="text-center text-xl font-semibold mb-5">Add Vehicle</h1>
-                    <div className="overflow-y-auto h-[60vh] p-4">
+                    <div className="overflow-y-auto custom-scrollbar h-[60vh] p-4">
                         {/* Vehicle Category */}
                         <div className="mb-6">
                             <label

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import {Staff} from "../model/Staff.ts";
+import {Staff} from "../model/Staff";
+import * as React from "react";
 
 interface AddStaffProps {
     isModalOpen: boolean;
@@ -95,7 +96,7 @@ function AddStaff({ isModalOpen, setIsModalOpen, onSave }: Readonly<AddStaffProp
                     <h1 className="text-center text-xl font-semibold mb-5">Add Staff Member</h1>
 
                     <div className="overflow-y-auto h-[60vh] custom-scrollbar p-2">
-                        {/* First Name and Last Name */}`
+                        {/* First Name and Last Name */}
                         <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 mt-10">
                             <div className="sm:col-span-3">
                                 <label htmlFor="first-name" className="block text-sm font-medium text-gray-900">First

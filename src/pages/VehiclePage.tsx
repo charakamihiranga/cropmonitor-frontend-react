@@ -51,7 +51,7 @@ function VehiclePage() {
                 <i className="fa fa-refresh text-orange-600"></i>
                 <span>Vehicle updated successfully!</span>
             </div>,
-            { icon: false }
+            {icon: false}
         );
     }
     function handleDelete(vehicle: Vehicle){
