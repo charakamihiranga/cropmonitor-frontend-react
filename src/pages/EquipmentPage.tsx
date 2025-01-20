@@ -7,11 +7,15 @@ import {useState} from "react";
 import toast from "react-hot-toast";
 import {addEquipment} from "../slice/EquipmentSlice.ts";
 import AddEquipment from "./AddEquipment.tsx";
+import ViewEquipment from "./ViewEquipment.tsx";
 function EquipmentPage() {
     const equipments: Equipment[] = useSelector((state: RootState) =>  state.equipment);
     const dispatch = useDispatch();
     const equipmentHeaders = ['Name', 'Type', 'Status', 'Allocated Employee' ,'Allocated Field', 'Actions'];
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+    const [isViewModalOpen, setViewModalOpen] = useState(false);
+
+    const [selectedEquipment, setSelectedEquipment] = useState<Equipment | null>(null);
     const renderEquipmentRow = (equipment: Equipment) => (
         <>
             <div className="p-2 truncate">{equipment.equipmentName}</div>
@@ -27,7 +31,8 @@ function EquipmentPage() {
         toast.success('Equipment Added Successfully')
     }
     function handleViewEquipment(equipment: Equipment){
-        console.log(equipment);
+       setSelectedEquipment(equipment);
+       setViewModalOpen(true);
     }
     function openUpdateModal(equipment: Equipment){
         console.log(equipment);
@@ -73,6 +78,14 @@ function EquipmentPage() {
                     setIsModalOpen={setIsAddModalOpen}
                     onSave={handleAddEquipment}
                 />
+                {/*modal for view equipment*/}
+                {selectedEquipment && (
+                    <ViewEquipment
+                        equipment={selectedEquipment}
+                        isModalOpen={isViewModalOpen}
+                        setIsOpenModal={setViewModalOpen}
+                    />
+                )}
                 <DataTable
                     data={equipments}
                     headers={equipmentHeaders}
