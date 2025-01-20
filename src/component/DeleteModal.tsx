@@ -61,7 +61,7 @@ function DeleteModal({ visible, onDelete, onCancel }: Readonly<DeleteModalProps>
                 </div>
 
                 {/* Buttons Section */}
-                <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 font-semibold">
                     <div>
                         <button
                             onClick={onDelete}

@@ -10,7 +10,10 @@ const equipmentSlice = createSlice({
         addEquipment: (state, action: PayloadAction<Equipment>) => {
             state.push(action.payload);
         },
+        removeEquipment: (state, action: PayloadAction<string>) => {
+            return state.filter(equipment => equipment.equipmentId !== action.payload);
+        }
     },
 });
-export const { addEquipment, } = equipmentSlice.actions;
+export const { addEquipment, removeEquipment } = equipmentSlice.actions;
 export default equipmentSlice.reducer;

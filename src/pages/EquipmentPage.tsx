@@ -5,9 +5,11 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../store/Store.ts";
 import {useState} from "react";
 import toast from "react-hot-toast";
-import {addEquipment} from "../slice/EquipmentSlice.ts";
+import {addEquipment, removeEquipment} from "../slice/EquipmentSlice.ts";
 import AddEquipment from "./AddEquipment.tsx";
 import ViewEquipment from "./ViewEquipment.tsx";
+import DeleteModal from "../component/DeleteModal.tsx";
+import {removeVehicle} from "../slice/VehicleSlice.ts";
 function EquipmentPage() {
     const equipments: Equipment[] = useSelector((state: RootState) =>  state.equipment);
     const dispatch = useDispatch();
@@ -40,8 +42,26 @@ function EquipmentPage() {
     function handleUpdateEquipment(equipment: Equipment) {
         console.log(equipment);
     }
-    function handleDeleteEquipment(equipmentId: string){
-        console.log(equipmentId);
+    function handleDeleteEquipment(equipment: Equipment){
+        toast.custom((t) => (
+            <DeleteModal
+                visible={t.visible}
+                onDelete={() => {
+                    toast.dismiss(t.id);
+                    dispatch(removeEquipment(equipment.equipmentId));
+                    toast.success(
+                        <div className="flex items-center space-x-2 ">
+                            <i className="fa fa-trash text-red-600"></i>
+                            <span>Equipment deleted successfully!</span>
+                        </div>,
+                        { icon: false }
+                    );
+                }}
+                onCancel={() => {
+                    toast.dismiss(t.id);
+                }}
+            />
+        ));
     }
     return (
         <motion.div
