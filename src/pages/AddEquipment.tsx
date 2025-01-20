@@ -22,13 +22,13 @@ function AddEquipment({isModalOpen, setIsModalOpen, onSave}: Readonly<AddEquipme
         allocatedEmployeeId: '',
         allocatedFieldCode: '',
     });
-    function handleInputChange (e: React.ChangeEvent<HTMLInputElement>) {
+    function handleInputChange (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) {
         const {name, value} = e.target;
         setFormData({
             ...formData,
             [name]: value,
         });
-    };
+    }
 
     function handleSave(){
         const allocatedEmployee = employees.find(employee => employee.staffId === formData.allocatedEmployeeId);
