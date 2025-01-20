@@ -20,7 +20,7 @@ function Navigation({ isOpen}) {
     ];
 
     return (
-        <div className="relative">
+        <div className="relative z-50">
             {/* Burger Button */}
             {!isMenuOpen && (
                 <button
@@ -55,14 +55,14 @@ function Navigation({ isOpen}) {
                                 setActiveItem(item.id);
                                 setMenuOpen(false);
                             }}
-                            className={`flex items-center text-base font-medium rounded w-full py-2 pl-3 transition-all ${
+                            className={`flex items-center text-base font-medium rounded text-sm md:text-base lg:text-lg w-full py-2 pl-3 transition-all ${
                                 activeItem === item.id
                                     ? 'bg-gray-100 text-green-700'
                                     : 'text-gray-700 hover:bg-gray-100 hover:text-green-700'
                             } ${item.id === 'logout' ? 'fixed bottom-8' : '' } `}
                         >
                             <i
-                                className={`fas ${item.icon} mr-3 text-2xl py-2 ${
+                                className={`fas ${item.icon} mr-3 text-lg md:text-xl lg:text-2xl py-2 ${
                                     activeItem === item.id ? 'text-green-700' : ''
                                 } `}
                             ></i>
