@@ -5,17 +5,18 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../store/Store.ts";
 import {useState} from "react";
 import toast from "react-hot-toast";
-import {addEquipment, removeEquipment} from "../slice/EquipmentSlice.ts";
+import {addEquipment, removeEquipment, updateEquipment} from "../slice/EquipmentSlice.ts";
 import AddEquipment from "./AddEquipment.tsx";
 import ViewEquipment from "./ViewEquipment.tsx";
 import DeleteModal from "../component/DeleteModal.tsx";
-import {removeVehicle} from "../slice/VehicleSlice.ts";
+import UpdateEquipment from "./UpdateEquipment.tsx";
 function EquipmentPage() {
     const equipments: Equipment[] = useSelector((state: RootState) =>  state.equipment);
     const dispatch = useDispatch();
     const equipmentHeaders = ['Name', 'Type', 'Status', 'Allocated Employee' ,'Allocated Field', 'Actions'];
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [isViewModalOpen, setViewModalOpen] = useState(false);
+    const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
 
     const [selectedEquipment, setSelectedEquipment] = useState<Equipment | null>(null);
     const renderEquipmentRow = (equipment: Equipment) => (
@@ -37,10 +38,19 @@ function EquipmentPage() {
        setViewModalOpen(true);
     }
     function openUpdateModal(equipment: Equipment){
-        console.log(equipment);
+        setSelectedEquipment(equipment);
+        setIsUpdateModalOpen(true);
     }
     function handleUpdateEquipment(equipment: Equipment) {
-        console.log(equipment);
+        dispatch(updateEquipment(equipment))
+        setIsUpdateModalOpen(false);
+        toast.success(
+            <div className="flex items-center space-x-2 ">
+                <i className="fa fa-refresh text-orange-600"></i>
+                <span>Equipment updated successfully!</span>
+            </div>,
+            {icon: false}
+        );
     }
     function handleDeleteEquipment(equipment: Equipment){
         toast.custom((t) => (
@@ -104,6 +114,15 @@ function EquipmentPage() {
                         equipment={selectedEquipment}
                         isModalOpen={isViewModalOpen}
                         setIsOpenModal={setViewModalOpen}
+                    />
+                )}
+                {/*modal for update equipment*/}
+                {selectedEquipment && (
+                    <UpdateEquipment
+                        isModalOpen={isUpdateModalOpen}
+                        setIsModalOpen={setIsUpdateModalOpen}
+                        equipment={selectedEquipment}
+                        onUpdate={handleUpdateEquipment}
                     />
                 )}
                 <DataTable
