@@ -5,6 +5,7 @@ import StaffPage from "./pages/StaffPage.tsx";
 import {Toaster} from "react-hot-toast";
 import VehiclePage from "./pages/VehiclePage.tsx";
 import FieldPage from "./pages/FieldPage.tsx";
+import EquipmentPage from "./pages/EquipmentPage.tsx";
 
 
 
@@ -18,6 +19,7 @@ function App() {
               {path: '/staff', element: <StaffPage />},
               {path:'/vehicle', element: <VehiclePage/>},
               {path:'/field', element: <FieldPage/>},
+              {path: '/equipment', element: <EquipmentPage />},
           ]
       }
   ])
