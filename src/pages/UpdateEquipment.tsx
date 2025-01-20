@@ -3,7 +3,7 @@ import {Field} from "../model/Field.ts";
 import {useSelector} from "react-redux";
 import {RootState} from "../store/Store.ts";
 import {Staff} from "../model/Staff.ts";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {motion} from "framer-motion";
 import * as React from "react";
 
@@ -23,6 +23,17 @@ function UpdateEquipment({isModalOpen, setIsModalOpen, onUpdate, equipment }: Re
         allocatedEmployeeId: equipment.allocatedEmployee.staffId,
         allocatedFieldCode: equipment.allocatedField.fieldCode,
     });
+
+    useEffect(() => {
+        setFormData({
+            equipmentName: equipment.equipmentName ,
+            equipmentType: equipment.equipmentType,
+            status: equipment.status,
+            allocatedEmployeeId: equipment.allocatedEmployee.staffId,
+            allocatedFieldCode: equipment.allocatedField.fieldCode,
+        });
+    }, [isModalOpen]);
+
     function handleInputChange (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) {
         const {name, value} = e.target;
         setFormData({

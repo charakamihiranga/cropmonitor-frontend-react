@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import { motion } from "framer-motion";
 import {Staff} from "../model/Staff.ts";
 import {formatDate} from "../util/util.ts";
@@ -28,6 +28,30 @@ function UpdateStaff({ isModalOpen, setIsModalOpen, onUpdate, staff}: Readonly<U
         city: staff.addressLine05,
         postalCode: staff.postalCode,
     });
+
+    useEffect(() => {
+        setFormData({
+            firstName: staff.firstName,
+            lastName: staff.lastName,
+            designation: staff.designation,
+            joinedDate: formatDate(staff.joinedDate),
+            firstName: staff.firstName,
+            lastName: staff.lastName,
+            designation: staff.designation,
+            joinedDate: formatDate(staff.joinedDate),
+            gender: staff.gender,
+            dob: formatDate(staff.dob),
+            contactNumber: staff.contactNo,
+            email: staff.email,
+            role: staff.role,
+            streetAddress: staff.addressLine01,
+            addressLine2: staff.addressLine02,
+            country: staff.addressLine03,
+            province: staff.addressLine04,
+            city: staff.addressLine05,
+            postalCode: staff.postalCode,
+        });
+    }, [isModalOpen]);
 
     function handleInputChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
         const { name, value } = e.target;
@@ -99,7 +123,7 @@ function UpdateStaff({ isModalOpen, setIsModalOpen, onUpdate, staff}: Readonly<U
 
                     <div className="overflow-y-auto h-[60vh] custom-scrollbar p-2">
                         {/* First Name and Last Name */}`
-                        <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 mt-10">
+                        <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                             <div className="sm:col-span-3">
                                 <label htmlFor="first-name" className="block text-sm font-medium text-gray-900">First
                                     name</label>

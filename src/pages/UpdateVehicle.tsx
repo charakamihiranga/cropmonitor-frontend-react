@@ -1,5 +1,5 @@
 import {Vehicle} from "../model/Vehicle.ts";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import * as React from "react";
 import {Staff} from "../model/Staff.ts";
 import {useSelector} from "react-redux";
@@ -21,6 +21,18 @@ function UpdateVehicle({ isModalOpen, setIsModalOpen, onUpdate, vehicle}: Readon
         allocatedStaffId: vehicle.allocatedStaffMember.staffId,
         remarks: vehicle.remarks
     });
+
+    useEffect(() => {
+        setFormData({
+            licencePlate: vehicle.licensePlate,
+            category: vehicle.category,
+            fuelType: vehicle.fuelType,
+            status: vehicle.status,
+            allocatedStaffId: vehicle.allocatedStaffMember.staffId,
+            remarks: vehicle.remarks
+        });
+    }, [isModalOpen]);
+
     function handleInputChange(e: React.ChangeEvent<HTMLInputElement| HTMLSelectElement| HTMLTextAreaElement>) {
         const {name, value} = e.target;
         setFormData({ ...formData, [name]: value});
@@ -43,6 +55,7 @@ function UpdateVehicle({ isModalOpen, setIsModalOpen, onUpdate, vehicle}: Readon
         onUpdate(updatedVehicle);
         setIsModalOpen(false);
     }
+
     return (
         isModalOpen && (
             <motion.div
@@ -79,8 +92,8 @@ function UpdateVehicle({ isModalOpen, setIsModalOpen, onUpdate, vehicle}: Readon
                         ease: "easeInOut", // Professional easing
                     }}
                 >
-                    <h1 className="text-center text-xl font-semibold mb-5">Add Vehicle</h1>
-                    <div className="overflow-y-auto h-[60vh] p-4">
+                    <h1 className="text-center text-xl font-semibold mb-5">Update Vehicle</h1>
+                    <div className="overflow-y-auto custom-scrollbar h-[60vh] p-4">
                         {/* Vehicle Category */}
                         <div className="mb-6">
                             <label
