@@ -160,7 +160,10 @@ function FieldActions({
                        View Field Details
                    </h1>
 
-                   <div className="overflow-y-auto h-[70vh] p-4 custom-scrollbar">
+                   <div    className={`${
+                       fieldImages && fieldImages.length > 0 ? "h-[70vh]" : ""
+                   } overflow-y-auto p-4 custom-scrollbar`}
+                   >
                        <ImageSlider images={fieldImages ? fieldImages : []}/>
                        <div className="mb-6">
                            <label
