@@ -6,6 +6,7 @@ import {Toaster} from "react-hot-toast";
 import VehiclePage from "./pages/VehiclePage.tsx";
 import FieldPage from "./pages/FieldPage.tsx";
 import EquipmentPage from "./pages/EquipmentPage.tsx";
+import CropPage from "./pages/CropPage.tsx";
 
 
 
@@ -20,6 +21,7 @@ function App() {
               {path:'/vehicle', element: <VehiclePage/>},
               {path:'/field', element: <FieldPage/>},
               {path: '/equipment', element: <EquipmentPage />},
+              {path: '/crop', element: <CropPage />},
           ]
       }
   ])
