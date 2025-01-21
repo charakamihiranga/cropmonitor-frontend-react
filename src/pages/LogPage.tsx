@@ -5,13 +5,18 @@ import {RootState} from "../store/Store.ts";
 import LogCardContainer from "./LogCardContainer.tsx";
 import {useState} from "react";
 import AddLog from "./AddLog.tsx";
-import {addLog} from "../slice/LogSlice.ts";
+import {addLog, removeLog, updateLog} from "../slice/LogSlice.ts";
 import toast from "react-hot-toast";
+import LogActions from "./LogActions.tsx";
+import DeleteModal from "../component/DeleteModal.tsx";
 
 function LogPage() {
     const logs : Log[] = useSelector((state: RootState) => state.log);
     const dispatch = useDispatch();
+    const [selectedField, setIsSelectedField] = useState<Log | null>(null);
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+    const [isActionModalOpen, setIsActionModalOpen] = useState(false);
+
 
     function handleAddLog(log: Log) {
         console.log(log);
@@ -19,9 +24,40 @@ function LogPage() {
         setIsAddModalOpen(false);
         toast.success('Log Added Successfully');
     }
+
     function openLogActionsModal(log: Log) {
-        console.log(log);
+        setIsSelectedField(log);
+        setIsActionModalOpen(true);
     }
+
+    function handleUpdateLog(log: Log) {
+        dispatch(updateLog(log));
+        setIsActionModalOpen(false);
+        toast.success('Log Updated Successfully');
+    }
+
+    function handleDeleteLog(logCode: string) {
+        toast.custom((t) => (
+            <DeleteModal
+                visible={t.visible}
+                onDelete={() => {
+                    toast.dismiss(t.id);
+                    dispatch(removeLog(logCode));
+                    toast.success(
+                        <div className="flex items-center space-x-2 ">
+                            <i className="fa fa-trash text-red-600"></i>
+                            <span>Log deleted successfully!</span>
+                        </div>,
+                        { icon: false }
+                    );
+                }}
+                onCancel={() => {
+                    toast.dismiss(t.id);
+                }}
+            />
+        ));
+    }
+
     return (
         <motion.div
             initial={{
@@ -57,11 +93,22 @@ function LogPage() {
                        onCardClick={openLogActionsModal}
                    />
                </div>
+                {/*modal for add log*/}
                 <AddLog
                     isModalOpen={isAddModalOpen}
                     setIsModalOpen={setIsAddModalOpen}
                     onSave={handleAddLog}
                 />
+                {/*modal for log actions*/}
+                {selectedField && (
+                    <LogActions
+                        isModalOpen={isActionModalOpen}
+                        setModalOpen={setIsActionModalOpen}
+                        log={selectedField}
+                        onUpdateLog={handleUpdateLog}
+                        onDeleteLog={handleDeleteLog}
+                    />
+                )}
             </div>
         </motion.div>
     );
