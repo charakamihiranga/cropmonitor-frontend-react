@@ -93,7 +93,7 @@ function FieldActions({
             });
             setSelectedStaff(field.staffs);
         }
-    }, [isModalOpen, field.staffs]);
+    }, [isModalOpen, field]);
 
     function handleUpdate() {
         const updatedField: Field = {
