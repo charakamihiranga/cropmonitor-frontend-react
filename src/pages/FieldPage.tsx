@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import FieldMap from "./FieldMap.tsx";
+import FieldMap from "../component/FieldMap.tsx";
 import { useState } from "react";
 import AddField from "./AddField";
 import {Field} from "../model/Field.ts";
@@ -91,8 +91,7 @@ function FieldPage() {
             <span className="pl-2">Add</span>
           </button>
         </div>
-        <FieldMap fields={fields} onClickOnField={handleViewField}/>
-
+          <FieldMap onClickOnField={handleViewField} height={70}/>
         {/*modal for add field*/}
         <AddField
           isModalOpen={isModalOpen}

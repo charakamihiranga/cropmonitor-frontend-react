@@ -1,15 +1,20 @@
 import { useState, useEffect } from 'react';
-import { Field } from "../model/Field";
+import { Field } from "../model/Field.ts";
 import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
+import {useSelector} from "react-redux";
+import {RootState} from "../store/Store.ts";
 
 interface FieldProps {
-    fields: Field[];
-    onClickOnField: (field: Field) => void;
+    height: number;
+    onClickOnField?: (field: Field) => void;
 }
 
-function FieldMap({ fields, onClickOnField }: Readonly<FieldProps>) {
+function FieldMap({onClickOnField, height }: Readonly<FieldProps>) {
+
+    const fields: Field[] = useSelector((state: RootState) => state.field);
+
     const [viewport] = useState({
         latitude: 6.9271,
         longitude: 79.8612,
@@ -57,7 +62,7 @@ function FieldMap({ fields, onClickOnField }: Readonly<FieldProps>) {
                 className="z-40"
                 center={[viewport.latitude, viewport.longitude]}
                 zoom={viewport.zoom}
-                style={{ width: '100%', height: '70vh' }}
+                style={{ width: '100%', height: `${height}vh` }}
             >
                 <TileLayer
                     url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
