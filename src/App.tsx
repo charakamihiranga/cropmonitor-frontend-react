@@ -7,6 +7,7 @@ import VehiclePage from "./pages/VehiclePage.tsx";
 import FieldPage from "./pages/FieldPage.tsx";
 import EquipmentPage from "./pages/EquipmentPage.tsx";
 import CropPage from "./pages/CropPage.tsx";
+import LogPage from "./pages/LogPage.tsx";
 
 
 
@@ -22,6 +23,7 @@ function App() {
               {path:'/field', element: <FieldPage/>},
               {path: '/equipment', element: <EquipmentPage />},
               {path: '/crop', element: <CropPage />},
+              {path:'/mlog', element: <LogPage />}
           ]
       }
   ])
