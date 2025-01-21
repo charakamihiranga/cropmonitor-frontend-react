@@ -31,7 +31,7 @@ function UpdateCrop({isModalOpen, setIsOpenModal, onUpdate, crop }: Readonly<Upd
             allocatedFieldCode: crop.allocatedField.fieldCode,
             cropImage: ''
         });
-    }, [isModalOpen]);
+    }, [isModalOpen, crop]);
     function handleInputChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
         const {name, value} = e.target;
         setFormData({
@@ -64,7 +64,7 @@ function UpdateCrop({isModalOpen, setIsOpenModal, onUpdate, crop }: Readonly<Upd
             cropCategory: formData.cropCategory,
             cropSeason: formData.cropSeason,
             allocatedField: fields.find(field => field.fieldCode === formData.allocatedFieldCode) as Field,
-            cropImage: formData.cropImage
+            cropImage: formData.cropImage ? formData.cropImage : crop.cropImage
         }
         onUpdate(updateCrop);
         setIsOpenModal(false);
