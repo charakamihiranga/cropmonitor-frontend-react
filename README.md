@@ -6,7 +6,9 @@
 <a href="https://github.com/GreenShadowPvtLtd/Crop-Monitoring-System"></a> <br /> <br />
 </p>
 </div>
+ 
 ## About The Project
+ 
 <br/>
 <div align="center">
   <img src="https://github.com/user-attachments/assets/a075a5be-784e-47d0-bd5c-9374e4df2eff" alt="Image" style="border-radius: 15px; margin: 20px; width: 100%; max-width: 600px;">
