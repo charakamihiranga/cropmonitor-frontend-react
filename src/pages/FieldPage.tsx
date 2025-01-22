@@ -91,7 +91,7 @@ function FieldPage() {
             <span className="pl-2">Add</span>
           </button>
         </div>
-          <FieldMap onClickOnField={handleViewField} height={70}/>
+          <FieldMap fields={fields} onClickOnField={handleViewField} height={70}/>
         {/*modal for add field*/}
         <AddField
           isModalOpen={isModalOpen}
