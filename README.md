@@ -1,16 +1,9 @@
 
-<a id="readme-top"></a>
-
-
-
-<!-- PROJECT LOGO -->
-<br />
-<!-- PROJECT LOGO --> <br /> <div align="center"> <a href="https://github.com/GreenShadowPvtLtd/Crop-Monitoring-System"> <img src="https://github.com/charakamihiranga/cropmonitor-frontend-react/blob/master/src/assets/img/android-chrome-192x192.png?raw=true" alt="Logo" width="80" height="80">
+<div align="center"> <a href="https://github.com/GreenShadowPvtLtd/Crop-Monitoring-System"> <img src="https://github.com/charakamihiranga/cropmonitor-frontend-react/blob/master/src/assets/img/android-chrome-192x192.png?raw=true" alt="Logo" width="80" height="80">
 <h3 align="center">
  <h3 align="center">Greenshadow-frontend</h3>
 <p align="center">A comprehensive front-end solution for managing agricultural assets, crops, staff, and vehicles. <br />
 <a href="https://github.com/GreenShadowPvtLtd/Crop-Monitoring-System"></a> <br /> <br />
-<a href="https://github.com/GreenShadowPvtLtd/Crop-Monitoring-System">View Demo</a>
 </p>
 </div>
 
