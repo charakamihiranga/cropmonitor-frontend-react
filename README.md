@@ -1,4 +1,4 @@
-
+<a id="readme-top"></a>
 <div align="center"> <a href="https://github.com/GreenShadowPvtLtd/Crop-Monitoring-System"> <img src="https://github.com/charakamihiranga/cropmonitor-frontend-react/blob/master/src/assets/img/android-chrome-192x192.png?raw=true" alt="Logo" width="80" height="80">
 <h3 align="center">
  <h3 align="center">Greenshadow-frontend</h3>
@@ -6,8 +6,6 @@
 <a href="https://github.com/GreenShadowPvtLtd/Crop-Monitoring-System"></a> <br /> <br />
 </p>
 </div>
-
-<!-- ABOUT THE PROJECT -->
 ## About The Project
 <br/>
 <div align="center">
