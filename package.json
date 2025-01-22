@@ -18,6 +18,8 @@
     "@types/react-transition-group": "^4.4.12",
     "axios": "^1.7.9",
     "framer-motion": "^11.18.0",
+    "highcharts": "^12.1.2",
+    "highcharts-react-official": "^3.2.1",
     "leaflet": "^1.9.4",
     "mapbox-gl": "^3.9.3",
     "maplibre-gl": "^5.0.1",

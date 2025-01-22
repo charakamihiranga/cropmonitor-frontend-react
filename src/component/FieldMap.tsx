@@ -3,17 +3,14 @@ import { Field } from "../model/Field.ts";
 import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
-import {useSelector} from "react-redux";
-import {RootState} from "../store/Store.ts";
 
 interface FieldProps {
+    fields: Field[];
     height: number;
     onClickOnField?: (field: Field) => void;
 }
 
-function FieldMap({onClickOnField, height }: Readonly<FieldProps>) {
-
-    const fields: Field[] = useSelector((state: RootState) => state.field);
+function FieldMap({fields , height, onClickOnField}: Readonly<FieldProps>) {
 
     const [viewport] = useState({
         latitude: 6.9271,
@@ -83,7 +80,7 @@ function FieldMap({onClickOnField, height }: Readonly<FieldProps>) {
                             position={[field.fieldLocation.latitude, field.fieldLocation.longitude]}
                             icon={customIcon} // Apply custom icon to the marker
                             eventHandlers={{
-                                click: () => onClickOnField(field),
+                                click: () => onClickOnField ? onClickOnField(field) : null,
                             }}
                         >
                             <Marker
